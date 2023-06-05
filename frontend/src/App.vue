@@ -42,7 +42,7 @@ export default {
     },
     async test(){
 
-      const response = await axios.get('/api/test');
+      const response = await axios.get('/api/class', {params: {class_id: 'A1884218389'}});
       if (response) {
         console.log(response)
       }

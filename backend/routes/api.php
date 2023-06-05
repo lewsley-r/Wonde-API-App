@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LessonController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ClassController;
 
 
 /*
@@ -21,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('test', [LessonController::class, 'getLessons']);
+Route::get('employees', [EmployeeController::class, 'getEmployees']);
+Route::get('class', [ClassController::class, 'getClass']);
+
