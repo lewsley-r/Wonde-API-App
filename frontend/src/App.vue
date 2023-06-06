@@ -22,7 +22,7 @@ export default {
       axios.post("/logout").then(
         setTimeout(function () {
           {
-            window.location.assign("/home");
+            window.location.assign("/");
           }
         }, 2000)
       );

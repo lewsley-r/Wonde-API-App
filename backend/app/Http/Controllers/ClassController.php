@@ -28,7 +28,7 @@ class ClassController extends Controller
     {
         $client = new \Wonde\Client('7231f99ac6a9e6e7f6bc54976efe1401fe4dac60​');
         $school = $client->school('A1930499544');
-        $classes = get_object_vars($school->classes->all(['lessons', 'lessons.period', 'students'], ['per_page' => 200, 'page' => $request->page_no]));
+        $classes = get_object_vars($school->classes->all(['lessons', 'lessons.period', 'students'], ['per_page' => 200, 'page' => $request->page_no, 'has_students' => 'false', 'has_lessons' => 'true']));
         return ($classes);
     }
 

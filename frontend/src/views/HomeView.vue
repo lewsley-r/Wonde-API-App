@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!this.classLoading">
     <button class="uk-button uk-button-default uk-button-secondary" type="button">Select a Teacher</button>
     <div uk-dropdown="mode: click">
       <ul class="uk-nav uk-dropdown-nav">
@@ -10,19 +10,19 @@
         </li>
       </ul>
     </div>
-    <div v-if="this.schedule.monday!=[]">
+    <div v-if="this.schedule.monday.length > 0">
       <div class="uk-card uk-card-default uk-card-body" >
         <h3 class="uk-card-title">Your Weekly Breakdown</h3>
+        <h4>Selected Teacher: {{ this.currentEmployee.forename }} {{ this.currentEmployee.surname }}</h4>
         <div class="uk-child-width-expand@s uk-text-center" uk-grid>
             <div v-for="day in this.days" v-bind:key="day.id">
                 <div class="day-card uk-card uk-card-default uk-card-body">
                   <h3>{{ day }}</h3>
                   <div v-for="group in this.schedule[day]" v-bind:key="group.className">
                     <div>
-                    <small><bold>Starts:</bold> {{ group.start }}</small>
-
+                      <small>Starts: {{ group.start }}</small>
                     </div>
-                    <small><bold>Ends:</bold> {{ group.end }}</small>
+                    <small>Ends: {{ group.end }}</small>
                     <h4>{{ group.className }}</h4>
                     <div v-for="student in group.students.data" v-bind:key="student.id">
                       {{ student.forename }} {{ student.surname }}
@@ -32,15 +32,24 @@
                 </div>
             </div>
         </div>
-    </div>
+      </div>
 
     </div>
+    <div v-else-if="this.schedule.monday.length == 0 && !this.currentEmployee">
+      <span uk-spinner="ratio: 4.5"></span>
+      <h3>Fetching your weekly summary.....</h3>
+    </div>
    
+  </div>
+  <div v-else-if="this.classLoading">
+    <span uk-spinner="ratio: 4.5"></span>
+    <h3>Fetching classes.....</h3>
   </div>
 </template>
 
 <script>
 import { useMainStore } from "../stores/mainStore";
+
 
 
 export default {
@@ -68,8 +77,14 @@ export default {
     employees() {
       return this.store.employees
     },
+    currentEmployee(){
+      return this.store.currentEmployee
+    },
     schedule(){
       return this.store.currentSchedule
+    },
+    classLoading(){
+      return this.store.classLoading
     }
 
   },
@@ -90,6 +105,8 @@ export default {
 .day-card{
   background-color: #4368fa;
   color: white;
+  height: 50vh;
+  overflow-y: scroll;
 }
 
 
