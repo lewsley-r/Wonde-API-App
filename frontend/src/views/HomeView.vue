@@ -7,6 +7,7 @@
           <a @click="this.store.selectEmployee(employee.upi)">
             {{ employee.title }}  {{ employee.forename }} {{ employee.surname }}
           </a>
+          <hr class="uk-divider-icon">
         </li>
       </ul>
     </div>
@@ -107,6 +108,14 @@ export default {
   color: white;
   height: 50vh;
   overflow-y: scroll;
+}
+
+.uk-nav > li > a {
+  padding: 10px;
+}
+
+.uk-nav > li > a:hover {
+  color: lightgray
 }
 
 

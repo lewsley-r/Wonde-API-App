@@ -34,9 +34,7 @@ export default {
   },
   mounted() {
     const store = useMainStore()
-    store.getEmployees()
-    store.getClasses(1)
-
+    store.getStartup()
   }
 };
 </script>

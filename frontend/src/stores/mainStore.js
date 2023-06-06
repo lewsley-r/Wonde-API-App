@@ -14,7 +14,8 @@ export const useMainStore = defineStore('main', {
     actions: {
 
         async getStartup() {
-
+            this.getEmployees()
+            this.getClasses(1)
         },
 
 
@@ -69,10 +70,13 @@ export const useMainStore = defineStore('main', {
             var lesson
             var classGroup
             for (classGroup in this.currentEmployee.classes.data) {
-                var item = { className: this.currentEmployee.classes.data[classGroup].name, students: this.currentEmployee.classes.data[classGroup].students, start: '', end: '' }
                 for (lesson in this.currentEmployee.classes.data[classGroup].lessons.data) {
-                    item.start = moment(this.currentEmployee.classes.data[classGroup].lessons.data[lesson].start_at.date).format("hh:mm a")
-                    item.end = moment(this.currentEmployee.classes.data[classGroup].lessons.data[lesson].end_at.date).format("hh:mm a")
+                    var item = { 
+                        className: this.currentEmployee.classes.data[classGroup].name, 
+                        students: this.currentEmployee.classes.data[classGroup].students, 
+                        start: moment(this.currentEmployee.classes.data[classGroup].lessons.data[lesson].start_at.date).format("hh:mm a"), 
+                        end: moment(this.currentEmployee.classes.data[classGroup].lessons.data[lesson].end_at.date).format("hh:mm a") 
+                    }
                     this.currentSchedule[this.currentEmployee.classes.data[classGroup].lessons.data[lesson].period.data.day].push(item)
                 }
             }
