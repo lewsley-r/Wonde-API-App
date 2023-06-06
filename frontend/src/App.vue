@@ -1,22 +1,10 @@
 <template>
   <div>
     <nav>
-     
-
-     
-      <button class="uk-button uk-button-default" type="button" aria-label="Logout" uk-tooltip="Admin Panel"
-        @click="goToAdmin()" v-if="isAdmin">
-        <span uk-icon="icon:  lock"></span>
-      </button>
       <button class="uk-button uk-button-default" type="button" aria-label="Logout" uk-tooltip="Sign Out"
         @click="logout()">
         <span uk-icon="icon:  sign-out"></span>
-      </button>
-      <button class="uk-button uk-button-default" type="button" aria-label="test" uk-tooltip="test"
-        @click="test()">
-        <span uk-icon="icon:  lock"></span>
-      </button>
-      
+      </button>    
     </nav>
     <router-view />
   </div>
@@ -38,26 +26,17 @@ export default {
           }
         }, 2000)
       );
-     
     },
-    async test(){
 
-      const response = await axios.get('/api/class', {params: {class_id: 'A1884218389'}});
-      if (response) {
-        console.log(response)
-      }
-      
-       
-    },
-    goToAdmin(){
-        window.location.assign('/admin')
-    }
   },
   computed: {
-    isAdmin() {
-      const store = useMainStore()
-      return store.user.roleId == 1
-    }
+    
+  },
+  mounted() {
+    const store = useMainStore()
+    store.getEmployees()
+    store.getClasses(1)
+
   }
 };
 </script>
@@ -71,7 +50,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  background-color: #A9CEF4;
+  background-color: #ffeae3;
   min-height: 100vw;
 }
 
