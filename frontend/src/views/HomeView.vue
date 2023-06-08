@@ -1,11 +1,11 @@
 <template>
   <div v-if="!this.classLoading">
-    <button class="uk-button uk-button-default uk-button-secondary" type="button">Select a Teacher</button>
+    <button class="uk-button uk-button-default uk-button-secondary" type="button" data-cy="select-teacher-btn">Select a Teacher</button>
     <div uk-dropdown="mode: click">
       <ul class="uk-nav uk-dropdown-nav">
         <li class="uk-active" v-for="employee in this.employees" v-bind:key="employee.upi">
-          <a @click="this.store.selectEmployee(employee)">
-            {{ employee.title }}  {{ employee.forename }} {{ employee.surname }}
+          <a @click="this.store.selectEmployee(employee)" data-cy="listed-teacher">
+            {{ employee.title }} {{ employee.forename }} {{ employee.surname }}
           </a>
           <hr class="uk-divider-icon">
         </li>
@@ -14,7 +14,7 @@
     <div v-if="this.schedule.monday.length > 0">
       <div class="uk-card uk-card-default uk-card-body" >
         <h3 class="uk-card-title">Your Weekly Breakdown</h3>
-        <h4>Selected Teacher: {{ this.currentEmployee.forename }} {{ this.currentEmployee.surname }}</h4>
+        <h4 data-cy="select-teacher-card-name">{{ this.currentEmployee.title }} {{ this.currentEmployee.forename }} {{ this.currentEmployee.surname }}</h4>
         <div class="uk-child-width-expand@s uk-text-center" uk-grid>
             <div v-for="day in this.days" v-bind:key="day.id">
                 <div class="day-card uk-card uk-card-default uk-card-body">
