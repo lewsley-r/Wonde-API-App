@@ -57,8 +57,7 @@ export const useMainStore = defineStore('main', {
                     if (this.classes[employeeClass].employees.data[0].upi == this.currentEmployee.upi){
                         this.currentEmployee.classes.data.push(this.classes[employeeClass])
                     }
-                }
-                
+                }  
             }
             this.sortLessons()
         },

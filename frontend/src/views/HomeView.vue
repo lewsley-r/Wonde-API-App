@@ -34,15 +34,12 @@
             </div>
         </div>
       </div>
-
     </div>
-    <div v-else-if="this.schedule.monday.length == 0 && !this.currentEmployee">
-      <span uk-spinner="ratio: 4.5"></span>
-      <h3>Fetching your weekly summary.....</h3>
+    <div v-else class="center">
+      <h1>Please select a teacher to view their weekly schedule</h1>
     </div>
-   
   </div>
-  <div v-else-if="this.classLoading">
+  <div v-else-if="this.classLoading" class="center">
     <span uk-spinner="ratio: 4.5"></span>
     <h3>Fetching classes.....</h3>
   </div>
@@ -117,6 +114,11 @@ export default {
 .uk-nav > li > a:hover {
   color: lightgray
 }
+
+.center {
+  margin-top: 25vh;
+}
+
 
 
 </style>
