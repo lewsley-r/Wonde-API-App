@@ -4,7 +4,7 @@
     <div uk-dropdown="mode: click">
       <ul class="uk-nav uk-dropdown-nav">
         <li class="uk-active" v-for="employee in this.employees" v-bind:key="employee.upi">
-          <a @click="this.store.selectEmployee(employee.upi)">
+          <a @click="this.store.selectEmployee(employee)">
             {{ employee.title }}  {{ employee.forename }} {{ employee.surname }}
           </a>
           <hr class="uk-divider-icon">

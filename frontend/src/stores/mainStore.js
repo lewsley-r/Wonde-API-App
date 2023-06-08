@@ -47,18 +47,13 @@ export const useMainStore = defineStore('main', {
             }
         },
 
-        selectEmployee(upi) {
-            var employee
+        selectEmployee(employee) {
             var employeeClass
             this.currentSchedule = { monday: [], tuesday: [], wednesday: [], thursday: [], friday: [] }
-            for (employee in this.employees) {
-                if (this.employees[employee].upi == upi) {
-                    this.currentEmployee = this.employees[employee]
-                }
-            }
+            this.currentEmployee = employee
             this.currentEmployee.classes = {data: []}
             for (employeeClass in this.classes) {
-                if (this.classes[employeeClass].employees.data[0]){
+                if (this.classes[employeeClass].employees.data[0]){ 
                     if (this.classes[employeeClass].employees.data[0].upi == this.currentEmployee.upi){
                         this.currentEmployee.classes.data.push(this.classes[employeeClass])
                     }
